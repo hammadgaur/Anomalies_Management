@@ -1,0 +1,32 @@
+body {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form-section {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+.btn {
+    font-size: 0.9rem;
+}
+.highlight {
+    background-color: yellow;
+}
+.field-label {
+    font-weight: bold;
+}
+.custom-input {
+    background-color: #f8f9fa;
+}
+textarea#comments {
+    background-color: #fdebd0;
+}

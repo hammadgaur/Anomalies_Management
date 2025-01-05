@@ -1,0 +1,217 @@
+<%- include('./partials/header.ejs') %>
+    <div class="container">
+        <div class="header">
+            <h1>Anomaly No <input type="text" id="searchInput" class="form-control d-inline w-auto highlight" value="<%= maxId %>" placeholder="Enter Anomaly No"></h1>
+            <div>
+                <button class="btn btn-secondary" onclick="findRecord()">Find Record</button>
+                <button class="btn btn-success" onclick="clearForm()">Add New Anomaly</button>
+                <button class="btn btn-danger">Edit Current Record</button>
+            </div>
+        </div>
+
+        <!-- General Information -->
+         <form action="/" method="post" id="form" enctype="multipart/form-data">
+            <div class="form-section">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="status" class="form-label field-label">Status</label>
+                        <select class="form-select" id="status" name="StatusName" >
+                            <option value="">Select Status</option>
+                            <option value="Open">Open</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="integrityThreat" class="form-label field-label">Integrity Threat</label>
+                        <select class="form-select" id="integrityThreat" name="IntegrityName" >
+                            <option value="">Select Threat Level</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="productionThreat" class="form-label field-label">Production Threat</label>
+                        <select class="form-select" id="productionThreat" name="ProductionName" >
+                            <option value="">Select Threat Level</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="custodian" class="form-label field-label">Custodian</label>
+                        <input type="text" class="form-control" name="CustodianName" id="custodian"  placeholder="Enter Custodian" >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="operator" class="form-label field-label">Operator</label>
+                        <input type="text" class="form-control" name="OperatorName" id="operator" placeholder="Enter Operator" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="area" class="form-label field-label">Area</label>
+                        <input type="text" class="form-control" name="AreaName" id="area" placeholder="Enter Area" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="plNo" class="form-label field-label">PL No</label>
+                        <input type="text" class="form-control" name="PLName" id="plNo" placeholder="Enter PL No" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="platform" class="form-label field-label">Platform</label>
+                        <input type="text" class="form-control" name="PlatformName" id="platform" placeholder="Enter Platform" >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="field" class="form-label field-label">Field</label>
+                        <input type="text" class="form-control" name="FieldName" id="field" placeholder="Enter Field" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="isPipeline" class="form-label field-label">Is Pipeline</label>
+                        <select class="form-select" id="isPipeline" name="PipelineName" >
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="isStructure" class="form-label field-label">Is Structure</label>
+                        <select class="form-select" id="isStructure" name="StructureName" >
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="isWell" class="form-label field-label">Is Well</label>
+                        <select class="form-select" id="isWell" name="IsWellName" >
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="anomalyType" class="form-label field-label">Anomaly Type</label>
+                        <input type="text" class="form-control" id="anomalyType" name="AnomalyTypeName" placeholder="Enter Anomaly Type" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="assessment" class="form-label field-label">Assessment</label>
+                        <input type="text" class="form-control" id="assessment" name="AssessmentName" placeholder="Enter Assessment" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="location" class="form-label field-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="LocationName" placeholder="Enter Location" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="compDes" class="form-label field-label">ComP Des</label>
+                        <input type="text" class="form-control" id="compDes" name="ComPName" placeholder="Enter Component Description" >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="dateFirstReported" class="form-label field-label">Date First Reported</label>
+                        <input type="date" class="form-control" id="dateFirstReported" name="ReportedName" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dateLastInspected" class="form-label field-label">Date Last Inspected</label>
+                        <input type="date" class="form-control" id="dateLastInspected" name="InspectedName" >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="description" class="form-label field-label">Description</label>
+                        <textarea class="form-control" id="description" rows="2" name="DescriptionName" placeholder="Enter Description" ></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="components" class="form-label field-label">Components</label>
+                        <textarea class="form-control" id="components" rows="2" name="ComponentsName" placeholder="Enter Components" ></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="comments" class="form-label field-label">Comments</label>
+                        <textarea class="form-control" id="comments" rows="2" name="CommentsName" placeholder="Enter Comments" ></textarea>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Additional Data -->
+            <div class="form-section">
+                <h5>Additional Data for <a href="#" class="text-primary">Anomaly Assessment Report</a></h5>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="preparedBy" class="form-label field-label">Prepared By</label>
+                        <input type="text" class="form-control" id="preparedBy" name="PreparedName" placeholder="Enter Name" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="checkedBy" class="form-label field-label">Checked By</label>
+                        <input type="text" class="form-control" id="checkedBy" name="CheckedName" placeholder="Enter Name" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="approvedBy" class="form-label field-label">Approved By</label>
+                        <input type="text" class="form-control" id="approvedBy" name="ApprovedName" placeholder="Enter Name" >
+                    </div>
+                    <div class="col-md-3">
+                        <label for="enteredBy" class="form-label field-label">Entered By</label>
+                        <input type="text" class="form-control" id="enteredBy" name="EnteredName" placeholder="Enter Name" >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="equipmentSupplier" class="form-label field-label">Equipment Supplier</label>
+                        <input type="text" class="form-control" id="equipmentSupplier" name="EquipmentName" placeholder="Enter Supplier" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="criticality" class="form-label field-label">Criticality</label>
+                        <select class="form-select" id="criticality" name="CriticalityName" >
+                            <option value="">Select Criticality</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="hyperlink" class="form-label field-label">Hyperlink</label>
+                        <input type="url" class="form-control" id="hyperlink" name="HyperlinkName" placeholder="Enter URL" >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="supportDoc1" class="form-label field-label">Support Document 1</label>
+                        <input type="file" class="form-control" id="supportDoc1" name="Document1Name" >
+                        <a id="docLink1" href="" target="_blank" style="display: none;">View Uploaded Document</a>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="supportDoc2" class="form-label field-label">Support Document 2</label>
+                        <input type="file" class="form-control" id="supportDoc2" name="Document2Name" >
+                        <a id="docLink2" href="" target="_blank" style="display: none;">View Uploaded Document</a>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="supportDoc3" class="form-label field-label">Support Document 3</label>
+                        <input type="file" class="form-control" id="supportDoc3" name="Document3Name" >
+                        <a id="docLink3" href="" target="_blank" style="display: none;">View Uploaded Document</a>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="supportDoc4" class="form-label field-label">Support Document 4</label>
+                        <input type="file" class="form-control" id="supportDoc4" name="Document4Name" >
+                        <a id="docLink4" href="" target="_blank" style="display: none;">View Uploaded Document</a>
+                    </div>
+                </div>
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+       
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
